@@ -7,7 +7,11 @@ const fetchSuperHeroes = () => {
 }
 
 const RQSuperHeroesPage = () => {
-    const { data, isLoading, isError, error, isFetching } = useQuery("super-heroes", fetchSuperHeroes, { cacheTime: 5000 });
+    const { data, isLoading, isError, error, isFetching } = useQuery(
+        "super-heroes",
+        fetchSuperHeroes,
+        // { cacheTime: 5000 }, 
+        { staleTime: 30000 });
 
 
     useEffect(() => {
