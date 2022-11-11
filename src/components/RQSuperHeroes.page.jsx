@@ -25,7 +25,11 @@ const RQSuperHeroesPage = () => {
         // { enabled: true } //default true //this will not fetch automatically the data, its need to be trigger the "refetch" that's why it put in onClick 
         {
             onSuccess: onSuccess,
-            onError: onError
+            onError: onError,
+            select: (data) => {
+                const superHeroes = data.data.map(hero => hero.name);
+                return superHeroes;
+            }
         }
     );
 
@@ -45,9 +49,14 @@ const RQSuperHeroesPage = () => {
         <>
             <h2 className='rq-super-heroes'>RQ Super Heroes Page</h2>
             <button onClick={refetch}>Fetch Heros</button>
-            {
+            {/* {
                 data?.data.map(hero => (
                     <div key={hero.name}>{hero.name}</div>
+                ))
+            } */}
+            {
+                data.map(heroName => (
+                    <div key={heroName}>{heroName}</div>
                 ))
             }
         </>
