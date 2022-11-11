@@ -7,7 +7,7 @@ const fetchSuperHeroes = () => {
 }
 
 const RQSuperHeroesPage = () => {
-    const { data, isLoading, isError, error } = useQuery("super-heroes", fetchSuperHeroes);
+    const { data, isLoading, isError, error, isFetching } = useQuery("super-heroes", fetchSuperHeroes, { cacheTime: 5000 });
 
 
     useEffect(() => {
@@ -16,6 +16,8 @@ const RQSuperHeroesPage = () => {
         //     console.log("clean up RQSuperHeroesPage");
         // }
     }, []);
+
+    console.log({ isLoading, isFetching })
 
     if (isLoading) return <h2>Loading...</h2>
     if (isError) return <h2>{error.message}</h2>
