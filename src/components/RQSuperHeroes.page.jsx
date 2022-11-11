@@ -10,8 +10,11 @@ const RQSuperHeroesPage = () => {
     const { data, isLoading, isError, error, isFetching } = useQuery(
         "super-heroes",
         fetchSuperHeroes,
-        // { cacheTime: 5000 }, 
-        { staleTime: 30000 });
+        // { cacheTime: 5000 }, //default 5mins
+        { staleTime: 30000 }, //default 0 //after 30seconds will fetch again the data 
+        { refetchOnMount: true }, //default true //the query will REFETCH ON MOUNT if the data is STALE //if {refetchOnMount: "always"} even the data is not in STALE state if will fetch data 
+        { refetchOnWindowFocus: true } //default true //every time that the tapgit/window is on focos the background refetch will be initiated //if {refetchOnWindowFocus: "always"} even the data is not in STALE state if will fetch data 
+    );
 
 
     useEffect(() => {
