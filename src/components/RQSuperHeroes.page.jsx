@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from "react-router-dom";
 import { useSuperHeroesData } from '../hooks/useSuperHeroesData';
 
 const RQSuperHeroesPage = () => {
@@ -28,9 +29,16 @@ const RQSuperHeroesPage = () => {
             <button onClick={refetch}>Fetch Heros</button>
             {
                 data?.data.map(hero => (
-                    <div key={hero.name}>{hero.name}</div>
+                    <div key={hero.name}>
+                        <Link to={`/rq-super-heroes/${hero.id}`}>{hero.name}</Link>
+                    </div>
                 ))
             }
+            {/* {
+                data?.data.map(hero => (
+                    <div key={hero.name}>{hero.name}</div>
+                ))
+            } */}
             {/* {
                 data.map(heroName => (
                     <div key={heroName}>{heroName}</div>
