@@ -14,6 +14,7 @@ nav ul li {
 .home-page,
 .super-heroes,
 .rq-super-heroes,
-.rq-super-hero {
+.rq-super-hero,
+.rq-parallel {
   padding: 1rem;
 }

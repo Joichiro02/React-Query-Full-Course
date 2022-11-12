@@ -7,6 +7,7 @@ import SuperHeroesPage from './components/SuperHeroes.page';
 import RQSuperHeroesPage from './components/RQSuperHeroes.page';
 import AlterEgo from './components/AlterEgo';
 import RQSuperHeroPage from './components/RQSuperHero.page';
+import ParallelQueriesPage from './components/ParallelQueries.page';
 
 const queryClient = new QueryClient();
 
@@ -29,13 +30,17 @@ function App() {
               <li>
                 <Link to="/alter-ego">Alter Ego</Link>
               </li>
+              <li>
+                <Link to="/rq-parallel">Parallel Queries</Link>
+              </li>
             </ul>
           </nav>
           <Routes>
             <Route path='/' element={<HomePage />} />
             <Route path='/super-heroes' element={<SuperHeroesPage />} />
+            <Route path='/rq-parallel' element={<ParallelQueriesPage />} />
             <Route path='/rq-super-heroes' element={<RQSuperHeroesPage />} />
-            <Route path='/rq-super-heroes/:heroId' element={<RQSuperHeroPage />} />
+            <Route path='/:heroId' element={<RQSuperHeroPage />} />
             <Route path='/alter-ego' element={<AlterEgo />} />
           </Routes>
         </div>
