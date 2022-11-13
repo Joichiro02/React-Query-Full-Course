@@ -7,7 +7,7 @@ const RQSuperHeroPage = () => {
     const { data, isLoading, isError, error, isFetching } = useSuperHeroData(heroId);
 
     console.log(isLoading, isFetching)
-    if (isLoading || isFetching) return <div>Loading...</div>;
+    if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>{error.message}</div>;
     return (
         <>
