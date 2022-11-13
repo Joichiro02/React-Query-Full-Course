@@ -50,7 +50,7 @@ function App() {
             <Route path='/rq-dynamic-parallel' element={<DynamicParallelPage heroIds={[1, 3]} />} />
             <Route path='/rq-parallel' element={<ParallelQueriesPage />} />
             <Route path='/rq-super-heroes' element={<RQSuperHeroesPage />} />
-            <Route path='/:heroId' element={<RQSuperHeroPage />} />
+            <Route path='/rq-super-heroes/:heroId' element={<RQSuperHeroPage />} />
             <Route path='/alter-ego' element={<AlterEgo />} />
           </Routes>
         </div>
