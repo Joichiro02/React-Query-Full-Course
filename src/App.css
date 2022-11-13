@@ -16,6 +16,7 @@ nav ul li {
 .rq-super-heroes,
 .rq-super-hero,
 .rq-parallel,
-.rq-dynamic-parallel {
+.rq-dynamic-parallel,
+.rq-dependent {
   padding: 1rem;
 }
