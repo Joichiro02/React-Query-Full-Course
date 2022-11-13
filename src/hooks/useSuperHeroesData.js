@@ -39,13 +39,34 @@ export const useAddSuperHeroData = () => {
         // onSuccess: () => { // if the posting is successful, the "super-heroes" will be background refetch to reflect the changes
         //     queryClient.invalidateQueries("super-heroes");
         // }
-        onSuccess: (data) => { // no need to refetch the "super-heroes" it just update the super-heroes cache by merging the return data when post the hero, by using the setQueryData
+
+        // onSuccess: (data) => { // no need to refetch the "super-heroes" it just update the super-heroes cache by merging the return data when post the hero, by using the setQueryData
+        //     queryClient.setQueryData("super-heroes", (oldQueryData) => {
+        //         return {
+        //             ...oldQueryData,
+        //             data: [...oldQueryData.data, data.data]
+        //         }
+        //     })
+        // }
+
+        onMutate: async (newHero) => {
+            await queryClient.cancelQueries("super-heroes");
+            const previousHeroData = queryClient.getQueryData("super-heroes");
             queryClient.setQueryData("super-heroes", (oldQueryData) => {
                 return {
                     ...oldQueryData,
-                    data: [...oldQueryData.data, data.data]
+                    data: [...oldQueryData.data, { id: oldQueryData?.data?.length + 1, ...newHero }]
                 }
             })
+            return {
+                previousHeroData
+            }
+        },
+        onError: (_error, _hero, context) => {
+            queryClient.setQueryData("super-heroes", context.previousHeroData)
+        },
+        onSettled: () => {
+            queryClient.invalidateQueries("super-heroes")
         }
     })
 }
