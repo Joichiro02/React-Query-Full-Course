@@ -36,8 +36,16 @@ export const useSuperHeroesData = (options = null) => {
 export const useAddSuperHeroData = () => {
     const queryClient = useQueryClient();
     return useMutation(addSuperHero, {
-        onSuccess: () => { // if the posting is successful, the "super-heroes" will be background refetch to reflect the changes
-            queryClient.invalidateQueries("super-heroes");
+        // onSuccess: () => { // if the posting is successful, the "super-heroes" will be background refetch to reflect the changes
+        //     queryClient.invalidateQueries("super-heroes");
+        // }
+        onSuccess: (data) => { // no need to refetch the "super-heroes" it just update the super-heroes cache by merging the return data when post the hero, by using the setQueryData
+            queryClient.setQueryData("super-heroes", (oldQueryData) => {
+                return {
+                    ...oldQueryData,
+                    data: [...oldQueryData.data, data.data]
+                }
+            })
         }
     })
 }
